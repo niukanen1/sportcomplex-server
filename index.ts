@@ -15,6 +15,7 @@ async function startApolloServer() {
 		schema: schema,
 		csrfPrevention: true,
 		cache: "bounded",
+        introspection: true,
 		plugins: [
 			ApolloServerPluginDrainHttpServer({ httpServer }),
 			ApolloServerPluginLandingPageLocalDefault({ embed: true }),
