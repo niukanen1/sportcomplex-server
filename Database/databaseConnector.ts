@@ -1,8 +1,5 @@
 require('dotenv').config(); 
 import { MongoClient } from "mongodb";
-
-
-console.log("MONGO URI:::: " + process.env.MONGO_URI)
 const client = new MongoClient(process.env.MONGO_URI ?? ""); 
 
 const database = client.db("sport_complex"); 

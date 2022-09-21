@@ -24,7 +24,8 @@ async function startApolloServer() {
 	await server.start(); 
 	server.applyMiddleware({ app, path: "/" });
 	httpServer.listen(PORT, () => { 
-        console.log("Server started")
+        console.log("Server started on")
+        console.log(httpServer.address())
     });
 }
 
