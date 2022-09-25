@@ -9,12 +9,12 @@ export async function getPriceList() {
 	return cursor;
 }
 
-export async function updatePriceListElementById(updatedPriceListElement: PriceListElementInput1) {
+export async function updatePriceListElementById(id: string, updatedPriceListElement: PriceListElementInput) {
 	let response = "success";
     console.log("PRoceess")
 	try {
 		await priceListCollection.updateOne(
-			{ _id: new ObjectId(updatedPriceListElement._id) },
+			{ _id: new ObjectId(id) },
 			{
 				$set: {
 					...updatedPriceListElement,
@@ -26,7 +26,7 @@ export async function updatePriceListElementById(updatedPriceListElement: PriceL
         response = "failure";
         throw new Error("Error updating element " + err);
 	}
-	return await priceListCollection.findOne({_id: new ObjectId(updatedPriceListElement._id)});
+	return await priceListCollection.findOne({_id: new ObjectId(id)});
 }
 
 export async function createNewPriceListElement(newPriceListElement: PriceListElementInput) {

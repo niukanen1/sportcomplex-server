@@ -24,7 +24,7 @@ export const priceListType = gql`
         GetPriceList: [PriceListElement]!
     }
     type Mutation { 
-        UpdatePriceListElementById(updatedPriceListElement: PriceListElementInput1!): PriceListElement!
+        UpdatePriceListElementById(updatedPriceListElement: PriceListElementInput!, id: String!): PriceListElement!
         CreateNewPriceListElement(newPriceListElement: PriceListElementInput!): PriceListElement
         DeletePriceListElementById(_id: String!): String!
     }

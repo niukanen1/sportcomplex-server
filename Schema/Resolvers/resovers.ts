@@ -29,9 +29,10 @@ export const resolvers = {
 	Mutation: {
 		UpdatePriceListElementById: async (
 			_: any,
-			{updatedPriceListElement }: {updatedPriceListElement: PriceListElementInput1 }
+			{updatedPriceListElement, id }: {updatedPriceListElement: PriceListElementInput, id: string }
 		) => {
-			return await updatePriceListElementById(updatedPriceListElement);
+            console.log("PRoccesssssssing")
+			return await updatePriceListElementById(id, updatedPriceListElement);
 		},
 		CreateNewPriceListElement: async (
 			_: any,
