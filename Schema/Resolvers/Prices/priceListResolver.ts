@@ -37,3 +37,19 @@ export async function createNewPriceListElement(newPriceListElement: PriceListEl
 	}
 	return returnObj.response;
 }
+
+
+export async function deletePriceListElementById(_id: string) {
+    let responseStr = "success";  
+    try { 
+        const element = await priceListCollection.findOne({_id: new ObjectId(_id)});
+        await priceListCollection.deleteOne({_id: new ObjectId(_id)}); 
+        if (!element) { 
+            responseStr = "Element Not Found"
+        } 
+    } catch (err) { 
+        responseStr = "error"
+        throw new Error("Failed to delete " + err)
+    }
+    return responseStr
+}

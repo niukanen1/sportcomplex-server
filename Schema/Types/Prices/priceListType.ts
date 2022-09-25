@@ -26,6 +26,7 @@ export const priceListType = gql`
     type Mutation { 
         UpdatePriceListElementById(_id: String!, updatedPriceListElement: PriceListElementInput!): String!
         CreateNewPriceListElement(newPriceListElement: PriceListElementInput!): PriceListElement
+        DeletePriceListElementById(_id: String!): String!
     }
 
     # Input types

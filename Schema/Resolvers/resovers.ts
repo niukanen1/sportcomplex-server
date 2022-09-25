@@ -1,5 +1,5 @@
 import { ObjectId } from "mongodb";
-import { getPriceList, updatePriceListElementById, createNewPriceListElement } from "./Prices/priceListResolver";
+import { getPriceList, updatePriceListElementById, createNewPriceListElement, deletePriceListElementById } from "./Prices/priceListResolver";
 
 export type TextContent = { 
     RUS: string; 
@@ -29,5 +29,8 @@ export const resolvers = {
 		) => {
 			return await createNewPriceListElement(newPriceListElement);
 		},
+        DeletePriceListElementById: async (_:any, {_id} : {_id: string}) => { 
+            return await deletePriceListElementById(_id);
+        }
 	},
 };
