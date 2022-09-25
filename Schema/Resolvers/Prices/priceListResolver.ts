@@ -1,18 +1,20 @@
 // collectiosn
 import { priceListCollection } from "../../../Database/databaseConnector";
-import { PriceListElementInput } from "../resovers";
+import { PriceListElementInput, PriceListElementInput1 } from "../resovers";
 import { ObjectId } from "mongodb";
 
 export async function getPriceList() {
 	const cursor = await priceListCollection.find({}).toArray();
+    console.log("first")
 	return cursor;
 }
 
-export async function updatePriceListElementById(_id: string, updatedPriceListElement: PriceListElementInput) {
+export async function updatePriceListElementById(updatedPriceListElement: PriceListElementInput1) {
 	let response = "success";
+    console.log("PRoceess")
 	try {
 		await priceListCollection.updateOne(
-			{ _id: new ObjectId(_id) },
+			{ _id: new ObjectId(updatedPriceListElement._id) },
 			{
 				$set: {
 					...updatedPriceListElement,
@@ -20,14 +22,16 @@ export async function updatePriceListElementById(_id: string, updatedPriceListEl
 			}
 		);
 	} catch (err) {
+        console.log(err)
         response = "failure";
         throw new Error("Error updating element " + err);
 	}
-	return response;
+	return await priceListCollection.findOne({_id: new ObjectId(updatedPriceListElement._id)});
 }
 
 export async function createNewPriceListElement(newPriceListElement: PriceListElementInput) {
 	const returnObj = { response: {} };
+    console.log("adding new")
 	try {
 		const cursor = await priceListCollection.insertOne(newPriceListElement);
 		returnObj.response = await priceListCollection.findOne({_id: cursor.insertedId}) ?? "none";

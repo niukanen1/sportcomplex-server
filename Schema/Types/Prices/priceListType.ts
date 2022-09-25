@@ -24,7 +24,7 @@ export const priceListType = gql`
         GetPriceList: [PriceListElement]!
     }
     type Mutation { 
-        UpdatePriceListElementById(_id: String!, updatedPriceListElement: PriceListElementInput!): String!
+        UpdatePriceListElementById(updatedPriceListElement: PriceListElementInput1!): PriceListElement!
         CreateNewPriceListElement(newPriceListElement: PriceListElementInput!): PriceListElement
         DeletePriceListElementById(_id: String!): String!
     }
@@ -34,6 +34,11 @@ export const priceListType = gql`
         RUS: String
         EST: String
         ENG: String 
+    }
+    input PriceListElementInput1 { 
+        _id: String!
+        name: TextContentInput!
+        tickets: [TicketInput]
     }
     input PriceListElementInput { 
         name: TextContentInput!

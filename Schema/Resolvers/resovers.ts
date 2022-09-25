@@ -1,11 +1,21 @@
 import { ObjectId } from "mongodb";
-import { getPriceList, updatePriceListElementById, createNewPriceListElement, deletePriceListElementById } from "./Prices/priceListResolver";
+import {
+	getPriceList,
+	updatePriceListElementById,
+	createNewPriceListElement,
+	deletePriceListElementById,
+} from "./Prices/priceListResolver";
 
-export type TextContent = { 
-    RUS: string; 
-    EST: string; 
-    ENG: string; 
-}
+export type TextContent = {
+	RUS: string;
+	EST: string;
+	ENG: string;
+};
+export type PriceListElementInput1 = {
+    _id: string,
+	name: TextContent;
+	tickets: { description: TextContent; duration: { hours: number; additionalInfo: TextContent }; price: number }[];
+};
 export type PriceListElementInput = {
 	name: TextContent;
 	tickets: { description: TextContent; duration: { hours: number; additionalInfo: TextContent }; price: number }[];
@@ -19,9 +29,9 @@ export const resolvers = {
 	Mutation: {
 		UpdatePriceListElementById: async (
 			_: any,
-			{ _id, updatedPriceListElement }: { _id: string, updatedPriceListElement: PriceListElementInput }
+			{updatedPriceListElement }: {updatedPriceListElement: PriceListElementInput1 }
 		) => {
-			return await updatePriceListElementById(_id, updatedPriceListElement);
+			return await updatePriceListElementById(updatedPriceListElement);
 		},
 		CreateNewPriceListElement: async (
 			_: any,
@@ -29,8 +39,8 @@ export const resolvers = {
 		) => {
 			return await createNewPriceListElement(newPriceListElement);
 		},
-        DeletePriceListElementById: async (_:any, {_id} : {_id: string}) => { 
-            return await deletePriceListElementById(_id);
-        }
+		DeletePriceListElementById: async (_: any, { _id }: { _id: string }) => {
+			return await deletePriceListElementById(_id);
+		},
 	},
 };
