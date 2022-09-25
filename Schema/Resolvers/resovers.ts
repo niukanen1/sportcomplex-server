@@ -19,7 +19,7 @@ export const resolvers = {
 	Mutation: {
 		UpdatePriceListElementById: async (
 			_: any,
-			{ _id, updatedPriceListElement }: { _id: string; updatedPriceListElement: PriceListElementInput }
+			{ _id, updatedPriceListElement }: { _id: string, updatedPriceListElement: PriceListElementInput }
 		) => {
 			return await updatePriceListElementById(_id, updatedPriceListElement);
 		},
