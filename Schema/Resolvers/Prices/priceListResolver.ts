@@ -57,3 +57,11 @@ export async function deletePriceListElementById(_id: string) {
     }
     return responseStr
 }
+
+export async function getPriceListElementById(id: string) { 
+    const element = await priceListCollection.findOne({ _id: new ObjectId(id)}); 
+    if (!element) { 
+        throw new Error("Element not found...");
+    }
+    return element
+}

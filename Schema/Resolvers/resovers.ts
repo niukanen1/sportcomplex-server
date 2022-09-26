@@ -4,6 +4,7 @@ import {
 	updatePriceListElementById,
 	createNewPriceListElement,
 	deletePriceListElementById,
+    getPriceListElementById,
 } from "./Prices/priceListResolver";
 
 export type TextContent = {
@@ -25,6 +26,9 @@ export const resolvers = {
 		GetPriceList: async () => {
 			return await getPriceList();
 		},
+        GetPriceListElementById: async (_:any, {id}: {id: string}) => { 
+            return await getPriceListElementById(id);
+        }
 	},
 	Mutation: {
 		UpdatePriceListElementById: async (
