@@ -1,5 +1,5 @@
 import { latestNewsCollection, variablesCollection } from "../../../Database/databaseConnector";
-const fetch = require("fetch")
+const fetch = require('node-fetch');
 const SECRET = process.env.FACEBOOK_TOKEN_SECRET;
 
 export async function getLatestNews() {
@@ -77,7 +77,7 @@ export async function getFacebookData() {
 			} else if (data.error) {
 				console.log("error");
 				console.log(data.error);
-				// refreshToken(token);
+				refreshToken(token);
 				response.str += data.error.message;
 			} else {
 				response.str += " failed to refetch token";
