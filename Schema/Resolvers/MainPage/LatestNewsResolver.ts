@@ -30,21 +30,21 @@ export async function editToken(newToken: string) {
 
 	return response;
 }
-function justSutpidFetch() {
-	fetch(`https://graph.facebook.com/v15.0/spordikompleksKalev/feed?access_token=${"EAAVrZCSeKcAIBADQmOYcIidvb5TCZC2YsJTxF67VBLutfbKA2dQg2zDXUXlTnNvGp36UCBZAZCt1Ve7Of9NKqJ4dNGZCkAa6Xt1SDDQtyvABxYxwYI8vN2Orq86j7gnhLxhihuyNrnk80LoElNDMdmopajDBUAo1uGBeSON9hHpQTdtDJdqsxw21fYCZB1KHeu4CDBTZAaZBWoN4ZBr871AZBv"}`)
-		.then((response) => response.json())
-		.then((data) => {
-			if (data.data) {
-				for (let el of data.data) {
-					if (el.message) {
-						//send to bd el as facebook latest news
-                        console.log(el.message);
-						break;
-					}
-				}
-			}
-		});
-}
+// function justSutpidFetch() {
+// 	fetch(`https://graph.facebook.com/v15.0/spordikompleksKalev/feed?access_token=${"EAAVrZCSeKcAIBADQmOYcIidvb5TCZC2YsJTxF67VBLutfbKA2dQg2zDXUXlTnNvGp36UCBZAZCt1Ve7Of9NKqJ4dNGZCkAa6Xt1SDDQtyvABxYxwYI8vN2Orq86j7gnhLxhihuyNrnk80LoElNDMdmopajDBUAo1uGBeSON9hHpQTdtDJdqsxw21fYCZB1KHeu4CDBTZAaZBWoN4ZBr871AZBv"}`)
+// 		.then((response) => response.json())
+// 		.then((data) => {
+// 			if (data.data) {
+// 				for (let el of data.data) {
+// 					if (el.message) {
+// 						//send to bd el as facebook latest news
+//                         console.log(el.message);
+// 						break;
+// 					}
+// 				}
+// 			}
+// 		});
+// }
 export async function getFacebookData() {
 	const response = { str: "success" };
 	const cursor = await variablesCollection.findOne({ NewsToken: { $exists: true } });
@@ -56,8 +56,8 @@ export async function getFacebookData() {
 	// justSutpidFetch();
 
 	fetch(`https://graph.facebook.com/v15.0/spordikompleksKalev/feed?&access_token=${token!}`)
-		.then((response) => response.json())
-		.then(async (data) => {
+		.then((response: { json: () => any; }) => response.json())
+		.then(async (data: { data: any; error: { message: string; }; }) => {
 			if (data.data) {
 				for (let el of data.data) {
 					if (el.message) {
@@ -93,8 +93,8 @@ function refreshToken(token: string) {
 	fetch(
 		`https://graph.facebook.com/v15.0/oauth/access_token?grant_type=fb_exchange_token&client_id=1526109917835266&client_secret=${SECRET}&fb_exchange_token=${token}`
 	)
-		.then((response) => response.json())
-		.then(async (data) => {
+		.then((response: { json: () => any; }) => response.json())
+		.then(async (data: { access_token: any; }) => {
 			//send to db token with DATE
 			console.log("refetch token updated");
 			console.log(data.access_token);
