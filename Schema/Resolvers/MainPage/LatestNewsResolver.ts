@@ -77,7 +77,7 @@ export async function getFacebookData() {
 			} else if (data.error) {
 				console.log("error");
 				console.log(data.error);
-				// refreshToken(token);
+				refreshToken(token);
 				response.str += data.error.message;
 			} else {
 				response.str += " failed to refetch token";

@@ -7,33 +7,47 @@ import {
 	getPriceListElementById,
 } from "./Prices/priceListResolver";
 import { editToken, getFacebookData, getLatestNews } from './MainPage/LatestNewsResolver'
+import { addSimplePage, editSimplePage, getSimplePages } from "./SimplePages/SimplePagesResolvers";
 
 export type TextContent = {
 	RUS: string;
 	EST: string;
 	ENG: string;
 };
-export type PriceListElementInput1 = {
-	_id: string;
-	name: TextContent;
-	tickets: { description: TextContent; duration: { hours: number; additionalInfo: TextContent }; price: number }[];
-};
+// export type PriceListElementInput1 = {
+// 	_id: string;
+// 	name: TextContent;
+// 	tickets: { description: TextContent; duration: { hours: number; additionalInfo: TextContent }; price: number }[];
+// };
+
+export type SimplePageInput = { 
+    title: TextContent | null, 
+    text: TextContent | null, 
+    image: string | null
+}
 export type PriceListElementInput = {
 	name: TextContent;
 	tickets: { description: TextContent; duration: { hours: number; additionalInfo: TextContent }; price: number }[];
 };
 export const resolvers = {
 	Query: {
+        // PRICING
 		GetPriceList: async () => {
 			return await getPriceList();
 		},
 		GetPriceListElementById: async (_: any, { id }: { id: string }) => {
 			return await getPriceListElementById(id);
 		},
+        // LATEST NEWS
 		GetLatestNews: async () => {
 
 			return getLatestNews();
 		},
+        
+        // SIMPLE PAGES
+        GetSimplePages: async (_:any, {type}: {type: number}) => { 
+            return await getSimplePages(type);
+        }
 	},
 	Mutation: {
 		// PRICING
@@ -61,6 +75,14 @@ export const resolvers = {
 		EditToken: async (_: any, { newToken }: { newToken: string }) => {
 			return await editToken(newToken);
 		},
+
+        // SIMPLE PAGES
+        EditSimplePage: async (_:any, { _id, updatedSimplePage } : {_id: string, updatedSimplePage: SimplePageInput}) => { 
+            return await editSimplePage(_id, updatedSimplePage );
+        }, 
+        AddSimplePage: async (_:any, {type, newSimplePage}: { type: number, newSimplePage: SimplePageInput}) => { 
+            return addSimplePage(type, newSimplePage);
+        }
 	},
 };
 

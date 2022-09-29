@@ -1,6 +1,6 @@
 // collectiosn
 import { priceListCollection } from "../../../Database/databaseConnector";
-import { PriceListElementInput, PriceListElementInput1 } from "../resovers";
+import { PriceListElementInput } from "../resovers";
 import { ObjectId } from "mongodb";
 
 export async function getPriceList() {

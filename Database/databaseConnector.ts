@@ -8,6 +8,7 @@ const database = client.db("sport_complex");
 export const priceListCollection = database.collection("priceList");
 export const latestNewsCollection = database.collection("latestNews");
 export const variablesCollection = database.collection("variables");
+export const simplePagesCollection = database.collection("simplePages");
 
 
 client.connect(async err => {
