@@ -10,10 +10,12 @@ import { editToken, getFacebookData, getLatestNews } from './MainPage/LatestNews
 import { addSimplePage, editSimplePage, getSimplePages } from "./SimplePages/SimplePagesResolvers";
 import { getTimeTable, setTimeTable } from "./MainPage/TimeTableResolvers";
 import { getSportOpportunitiesDescription, setSportOpportunitiesDescription } from "./MainPage/SportOpportunitiesResolvers";
+import { getGeneralContactsInfo, getPersonalContactsInfo, setGeneralContactInfo, setPersonalContactInfo } from "./ContactPage/ContactInfoResolvers";
 
 export type TextContent = {
 	RUS: string;
 	EST: string;
+
 	ENG: string;
 };
 // export type PriceListElementInput1 = {
@@ -48,6 +50,24 @@ export type SportOpportunitiesDescriptionInput = {
     title: TextContent, 
     text: TextContent
 }
+
+export type FieldInput = { 
+    fieldTitle: TextContent
+    fieldInfo: string
+}
+
+export type GeneralContactsInfoInput = {
+    addressField: FieldInput
+    phoneField: FieldInput
+    emailField: FieldInput
+}
+export type PersonalContactsInfoInput = { 
+    name: string
+    role: TextContent
+    phone: string
+    email: string
+}
+
 export const resolvers = {
 	Query: {
         // PRICING
@@ -73,9 +93,17 @@ export const resolvers = {
             return await getTimeTable();
         }, 
 
-        // TODO: SportOpportunitiesDescription
+        // SportOpportunitiesDescription
         GetSportOpportunitiesDescription: async () => { 
             return getSportOpportunitiesDescription();
+        }, 
+
+        // CONTACT INFO
+        GetGeneralContactsInfo: async () => { 
+            return await getPersonalContactsInfo();
+        }, 
+        GetPersonalContactsInfo: async () => { 
+            return await getGeneralContactsInfo();
         }
 	},
 	Mutation: {
@@ -99,8 +127,7 @@ export const resolvers = {
 
 		// LATEST NEWS
 		RefetchLatestNews: async () => {
-
-			return getFacebookData();
+			return await getFacebookData();
 		},
 		EditToken: async (_: any, { newToken }: { newToken: string }) => {
 			return await editToken(newToken);
@@ -111,17 +138,25 @@ export const resolvers = {
             return await editSimplePage(_id, updatedSimplePage );
         }, 
         AddSimplePage: async (_:any, {type, newSimplePage}: { type: number, newSimplePage: SimplePageInput}) => { 
-            return addSimplePage(type, newSimplePage);
+            return await addSimplePage(type, newSimplePage);
         },
 
         // TIMETABLE 
         SetTimeTable: async (_:any, {newTimeTable}: {newTimeTable: TimeTableInput}) => { 
-            return setTimeTable(newTimeTable);
+            return await setTimeTable(newTimeTable);
         }, 
 
-        // TODO: SportOpportunitiesDescription
+        // SportOpportunitiesDescription
         SetSportOpportunitiesDescription: async (_:any, {newSportOpportunitiesDescription} : {newSportOpportunitiesDescription: SportOpportunitiesDescriptionInput}) => { 
-            return setSportOpportunitiesDescription(newSportOpportunitiesDescription);
+            return await setSportOpportunitiesDescription(newSportOpportunitiesDescription);
+        }, 
+
+        // CONTACT INFO
+        SetGeneralContactInfo: async (_: any, { newGeneralContactsInfo } : { newGeneralContactsInfo: GeneralContactsInfoInput}) => { 
+            return await setGeneralContactInfo(newGeneralContactsInfo)
+        }, 
+        SetPersonalContactInfo: async (_:any, {newPersonalContactsInfo} : { newPersonalContactsInfo: PersonalContactsInfoInput[]}) => { 
+            return await setPersonalContactInfo(newPersonalContactsInfo);
         }
 	},
 };

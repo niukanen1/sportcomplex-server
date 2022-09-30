@@ -11,6 +11,9 @@ export const variablesCollection = database.collection("variables");
 export const simplePagesCollection = database.collection("simplePages");
 export const timeTableCollection = database.collection("timeTable");
 export const sportOpportunitiesCollection = database.collection("sportOpportunities");
+export const generalContactsCollection = database.collection("generalContacts"); 
+export const personalContactsCollection = database.collection("personalContacts"); 
+
 
 client.connect(async (err) => {
 	if (err) {
