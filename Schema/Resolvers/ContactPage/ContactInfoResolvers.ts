@@ -5,7 +5,7 @@ import { generalContactsCollection, personalContactsCollection } from "../../../
 export async function getGeneralContactsInfo() { 
     const CollectionList = await generalContactsCollection.find({}).toArray();
     const generalContacts = CollectionList[0]; 
-
+    console.log(generalContacts)
     if (!generalContacts) { 
         throw new Error("Cannot find general contacts"); 
     }

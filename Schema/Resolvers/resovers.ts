@@ -100,10 +100,10 @@ export const resolvers = {
 
         // CONTACT INFO
         GetGeneralContactsInfo: async () => { 
-            return await getPersonalContactsInfo();
+            return await getGeneralContactsInfo();
         }, 
         GetPersonalContactsInfo: async () => { 
-            return await getGeneralContactsInfo();
+            return await getPersonalContactsInfo();
         }
 	},
 	Mutation: {
