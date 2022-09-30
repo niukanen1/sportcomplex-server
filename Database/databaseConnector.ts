@@ -5,10 +5,11 @@ const client = new MongoClient(process.env.MONGO_URI ?? "");
 const database = client.db("sport_complex"); 
 
 // collections 
-export const priceListCollection = database.collection("priceList");
-export const latestNewsCollection = database.collection("latestNews");
-export const variablesCollection = database.collection("variables");
+export const priceListCollection   = database.collection("priceList");
+export const latestNewsCollection  = database.collection("latestNews");
+export const variablesCollection   = database.collection("variables");
 export const simplePagesCollection = database.collection("simplePages");
+export const timeTableCollection   = database.collection("timeTable"); 
 
 
 client.connect(async err => {

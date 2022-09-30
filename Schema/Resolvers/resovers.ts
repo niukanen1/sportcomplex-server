@@ -8,6 +8,7 @@ import {
 } from "./Prices/priceListResolver";
 import { editToken, getFacebookData, getLatestNews } from './MainPage/LatestNewsResolver'
 import { addSimplePage, editSimplePage, getSimplePages } from "./SimplePages/SimplePagesResolvers";
+import { getTimeTable, setTimeTable } from "./MainPage/TimeTableResolvers";
 
 export type TextContent = {
 	RUS: string;
@@ -19,6 +20,11 @@ export type TextContent = {
 // 	name: TextContent;
 // 	tickets: { description: TextContent; duration: { hours: number; additionalInfo: TextContent }; price: number }[];
 // };
+
+export type TimeTableInput = { 
+    SportComplex: string, 
+    SwimmingPool: string,
+}
 
 export type SimplePageInput = { 
     title: TextContent | null, 
@@ -47,6 +53,11 @@ export const resolvers = {
         // SIMPLE PAGES
         GetSimplePages: async (_:any, {type}: {type: number}) => { 
             return await getSimplePages(type);
+        }, 
+
+        // TIMETABLE 
+        GetTimeTable: async () => { 
+            return await getTimeTable();
         }
 	},
 	Mutation: {
@@ -67,6 +78,7 @@ export const resolvers = {
 		DeletePriceListElementById: async (_: any, { _id }: { _id: string }) => {
 			return await deletePriceListElementById(_id);
 		},
+
 		// LATEST NEWS
 		RefetchLatestNews: async () => {
 
@@ -82,6 +94,11 @@ export const resolvers = {
         }, 
         AddSimplePage: async (_:any, {type, newSimplePage}: { type: number, newSimplePage: SimplePageInput}) => { 
             return addSimplePage(type, newSimplePage);
+        },
+
+        // TIMETABLE 
+        SetTimeTable: async (_:any, {newTimeTable}: {newTimeTable: TimeTableInput}) => { 
+            return setTimeTable(newTimeTable);
         }
 	},
 };
