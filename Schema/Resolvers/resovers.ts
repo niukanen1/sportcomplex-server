@@ -20,10 +20,17 @@ export type TextContent = {
 // 	name: TextContent;
 // 	tickets: { description: TextContent; duration: { hours: number; additionalInfo: TextContent }; price: number }[];
 // };
-
+export type TimeTableBlock = { 
+    title: TextContent
+    minTitle1: string
+    minTitle2: string
+    timeTable1: string
+    timeTable2: string
+}
 export type TimeTableInput = { 
-    SportComplex: string, 
-    SwimmingPool: string,
+    title: TextContent
+    SportComplex: TimeTableBlock
+    SwimmingPool: TimeTableBlock
 }
 
 export type SimplePageInput = { 

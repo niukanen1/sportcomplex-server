@@ -18,7 +18,7 @@ export async function setTimeTable(newTimeTable: TimeTableInput) {
         }
 		await timeTableCollection.updateOne(
 			{ _id: new ObjectId(timeTableList[0]._id) },
-			{ $set: { SportComplex: newTimeTable?.SportComplex, SwimmingPool: newTimeTable?.SwimmingPool } }
+			{ $set: newTimeTable }
 		);
 	} catch (e) {
 		response.str = "Something went wrong...";
