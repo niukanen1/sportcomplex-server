@@ -9,6 +9,7 @@ import {
 import { editToken, getFacebookData, getLatestNews } from './MainPage/LatestNewsResolver'
 import { addSimplePage, editSimplePage, getSimplePages } from "./SimplePages/SimplePagesResolvers";
 import { getTimeTable, setTimeTable } from "./MainPage/TimeTableResolvers";
+import { getSportOpportunitiesDescription, setSportOpportunitiesDescription } from "./MainPage/SportOpportunitiesResolvers";
 
 export type TextContent = {
 	RUS: string;
@@ -42,6 +43,11 @@ export type PriceListElementInput = {
 	name: TextContent;
 	tickets: { description: TextContent; duration: { hours: number; additionalInfo: TextContent }; price: number }[];
 };
+
+export type SportOpportunitiesDescriptionInput = { 
+    title: TextContent, 
+    text: TextContent
+}
 export const resolvers = {
 	Query: {
         // PRICING
@@ -65,6 +71,11 @@ export const resolvers = {
         // TIMETABLE 
         GetTimeTable: async () => { 
             return await getTimeTable();
+        }, 
+
+        // TODO: SportOpportunitiesDescription
+        GetSportOpportunitiesDescription: async () => { 
+            return getSportOpportunitiesDescription();
         }
 	},
 	Mutation: {
@@ -106,6 +117,11 @@ export const resolvers = {
         // TIMETABLE 
         SetTimeTable: async (_:any, {newTimeTable}: {newTimeTable: TimeTableInput}) => { 
             return setTimeTable(newTimeTable);
+        }, 
+
+        // TODO: SportOpportunitiesDescription
+        SetSportOpportunitiesDescription: async (_:any, {newSportOpportunitiesDescription} : {newSportOpportunitiesDescription: SportOpportunitiesDescriptionInput}) => { 
+            return setSportOpportunitiesDescription(newSportOpportunitiesDescription);
         }
 	},
 };
