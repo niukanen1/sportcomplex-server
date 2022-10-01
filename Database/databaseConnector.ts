@@ -13,6 +13,7 @@ export const timeTableCollection = database.collection("timeTable");
 export const sportOpportunitiesCollection = database.collection("sportOpportunities");
 export const generalContactsCollection = database.collection("generalContacts"); 
 export const personalContactsCollection = database.collection("personalContacts"); 
+export const userDataCollection = database.collection("userData");
 
 
 client.connect(async (err) => {

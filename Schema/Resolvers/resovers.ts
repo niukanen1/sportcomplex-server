@@ -11,6 +11,7 @@ import { addSimplePage, editSimplePage, getSimplePages } from "./SimplePages/Sim
 import { getTimeTable, setTimeTable } from "./MainPage/TimeTableResolvers";
 import { getSportOpportunitiesDescription, setSportOpportunitiesDescription } from "./MainPage/SportOpportunitiesResolvers";
 import { getGeneralContactsInfo, getPersonalContactsInfo, setGeneralContactInfo, setPersonalContactInfo } from "./ContactPage/ContactInfoResolvers";
+import { Login, updateUser } from "./UserLogin/UserLogin";
 
 export type TextContent = {
 	RUS: string;
@@ -66,6 +67,10 @@ export type PersonalContactsInfoInput = {
     role: TextContent
     phone: string
     email: string
+}
+export type UserInput = { 
+    login: string,
+    password: string
 }
 
 export const resolvers = {
@@ -157,6 +162,14 @@ export const resolvers = {
         }, 
         SetPersonalContactInfo: async (_:any, {newPersonalContactsInfo} : { newPersonalContactsInfo: PersonalContactsInfoInput[]}) => { 
             return await setPersonalContactInfo(newPersonalContactsInfo);
+        },
+
+        // USER LOGIN
+        UpdateUser: async (_:any, {updatedUser} : {updatedUser: UserInput}) => { 
+            return await updateUser(updatedUser);
+        }, 
+        Login: async (_:any, {userData}: {userData: UserInput}) => { 
+            return await Login(userData);
         }
 	},
 };
