@@ -34,3 +34,8 @@ export async function updateCalendarEvent(_id: string, newContent: CalendarEvent
     }
     return response.str
 }
+
+export async function getCalendarEventById(id: string) { 
+    const response = await calendarEventsCollection.findOne({_id: new ObjectId(id)}); 
+    return response
+}

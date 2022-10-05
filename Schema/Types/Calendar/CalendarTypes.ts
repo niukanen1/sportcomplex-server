@@ -14,6 +14,7 @@ export const CalendarTypes = gql`
 
     type Query { 
         GetCalendarEvents(options: Options): [CalendarEvent]
+        GetCalendarEventById(id: ID!) : CalendarEvent
     }
 
     type Mutation { 

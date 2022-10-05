@@ -12,7 +12,7 @@ import { getTimeTable, setTimeTable } from "./MainPage/TimeTableResolvers";
 import { getSportOpportunitiesDescription, setSportOpportunitiesDescription } from "./MainPage/SportOpportunitiesResolvers";
 import { getGeneralContactsInfo, getPersonalContactsInfo, setGeneralContactInfo, setPersonalContactInfo } from "./ContactPage/ContactInfoResolvers";
 import { Login, updateUser } from "./UserLogin/UserLogin";
-import { addCalendarEvent, getCalendarEvents, updateCalendarEvent } from "./Calendar/CalendarResolvers";
+import { addCalendarEvent, getCalendarEventById, getCalendarEvents, updateCalendarEvent } from "./Calendar/CalendarResolvers";
 
 export type TextContent = {
 	RUS: string;
@@ -97,7 +97,6 @@ export const resolvers = {
 		},
         // LATEST NEWS
 		GetLatestNews: async () => {
-
 			return getLatestNews();
 		},
         
@@ -128,6 +127,9 @@ export const resolvers = {
         GetCalendarEvents: async (_:any, { options } : {options: Options}) => { 
             return await getCalendarEvents(options); 
         }, 
+        GetCalendarEventById: async (_:any, { id } : { id: string}) => { 
+            return getCalendarEventById(id);
+        }
 
 	},
 	Mutation: {
