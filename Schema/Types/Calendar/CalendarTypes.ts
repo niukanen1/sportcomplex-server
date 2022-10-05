@@ -7,9 +7,9 @@ export const CalendarTypes = gql`
         name: TextContent
         eventDescription: TextContent
         link: String
-        startDate: String
-        endDate: String 
+        date: String
         place: String
+        time: String
     } 
 
     type Query { 
@@ -28,8 +28,8 @@ export const CalendarTypes = gql`
         name: TextContentInput
         eventDescription: TextContentInput
         link: String
-        startDate: String
-        endDate: String 
+        date: String
         place: String
+        time: String
     }
 `

@@ -77,8 +77,8 @@ export type CalendarEventInput = {
     name: TextContent
     eventDescription: TextContent
     link: string
-    startDate: string
-    endDate: string 
+    date: string
+    time: string 
     place: string
 }
 export type Options = { 
