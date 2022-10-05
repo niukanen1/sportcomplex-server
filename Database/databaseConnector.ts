@@ -14,6 +14,7 @@ export const sportOpportunitiesCollection = database.collection("sportOpportunit
 export const generalContactsCollection = database.collection("generalContacts"); 
 export const personalContactsCollection = database.collection("personalContacts"); 
 export const userDataCollection = database.collection("userData");
+export const calendarEventsCollection = database.collection("calendarEvents");
 
 
 client.connect(async (err) => {

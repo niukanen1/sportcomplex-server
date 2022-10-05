@@ -5,6 +5,7 @@ import { LatestNewsTypes } from "./MainPage/LatestNews";
 import { TimeTableTypes } from "./MainPage/TimeTableTypes";
 import { SportOpportunitiesTypes } from "./MainPage/SportOpportunitiesTypes";
 import { UserTypes } from "./UserLogin/UserTypes";
+import { CalendarTypes } from "./Calendar/CalendarTypes";
 
 export const typeDefs = [
 	priceListType,
@@ -13,5 +14,6 @@ export const typeDefs = [
 	TimeTableTypes,
 	SportOpportunitiesTypes,
 	ContactInfoTypes,
-    UserTypes
+    UserTypes, 
+    CalendarTypes
 ];

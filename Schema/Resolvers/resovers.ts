@@ -12,6 +12,7 @@ import { getTimeTable, setTimeTable } from "./MainPage/TimeTableResolvers";
 import { getSportOpportunitiesDescription, setSportOpportunitiesDescription } from "./MainPage/SportOpportunitiesResolvers";
 import { getGeneralContactsInfo, getPersonalContactsInfo, setGeneralContactInfo, setPersonalContactInfo } from "./ContactPage/ContactInfoResolvers";
 import { Login, updateUser } from "./UserLogin/UserLogin";
+import { addCalendarEvent, getCalendarEvents, updateCalendarEvent } from "./Calendar/CalendarResolvers";
 
 export type TextContent = {
 	RUS: string;
@@ -72,6 +73,18 @@ export type UserInput = {
     login: string,
     password: string
 }
+export type CalendarEventInput = { 
+    name: TextContent
+    eventDescription: TextContent
+    link: string
+    startDate: string
+    endDate: string 
+    place: string
+}
+export type Options = { 
+    offset: number 
+    limit: number
+}
 
 export const resolvers = {
 	Query: {
@@ -109,7 +122,13 @@ export const resolvers = {
         }, 
         GetPersonalContactsInfo: async () => { 
             return await getPersonalContactsInfo();
-        }
+        }, 
+
+        // CALENDAR EVENTS 
+        GetCalendarEvents: async (_:any, { options } : {options: Options}) => { 
+            return await getCalendarEvents(options); 
+        }, 
+
 	},
 	Mutation: {
 		// PRICING
@@ -170,6 +189,14 @@ export const resolvers = {
         }, 
         Login: async (_:any, {userData}: {userData: UserInput}) => { 
             return await Login(userData);
+        }, 
+
+        // CALENDAR EVENTS 
+        AddCalendarEvent: async (_:any, {newEvent} : {newEvent: CalendarEventInput}) => { 
+            return await addCalendarEvent(newEvent)
+        },
+        UpdateCalendarEvent: async (_: any, {_id, newContent}: {_id: string, newContent: CalendarEventInput}) => {
+            return await updateCalendarEvent(_id, newContent)
         }
 	},
 };
