@@ -9,7 +9,8 @@ export const CalendarTypes = gql`
         link: String
         date: String
         place: String
-        time: String
+        startTime: String
+        endTime: String
     } 
 
     type Query { 
@@ -31,6 +32,7 @@ export const CalendarTypes = gql`
         link: String
         date: String
         place: String
-        time: String
+        startTime: String
+        endTime: String
     }
 `
