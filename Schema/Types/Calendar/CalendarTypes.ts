@@ -21,6 +21,7 @@ export const CalendarTypes = gql`
     type Mutation { 
         AddCalendarEvent(newEvent: CalendarEventInput): String
         UpdateCalendarEvent(_id: ID, newContent: CalendarEventInput): String 
+        DeleteCalendarEvent(_id: ID): String
     }
     input Options {
         offset: Int 

@@ -39,3 +39,18 @@ export async function getCalendarEventById(id: string) {
     const response = await calendarEventsCollection.findOne({_id: new ObjectId(id)}); 
     return response
 }
+
+export async function deleteCalendarEvent(_id: string) { 
+    const response = { str: "Success" };
+
+    const objectToCheck = await calendarEventsCollection.findOne({_id: new ObjectId(_id)}); 
+
+    if (!objectToCheck) { 
+        response.str = "Failed to find the event";
+        return response.str
+    }
+
+    await calendarEventsCollection.deleteOne({_id: new ObjectId(_id)});
+
+    return response.str
+}
