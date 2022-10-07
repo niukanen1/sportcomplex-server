@@ -3,7 +3,7 @@ import { CalendarEventInput, Options } from './../resovers';
 import { calendarEventsCollection } from "../../../Database/databaseConnector";
 
 export async function getCalendarEvents(Options: Options) {
-    const array = await calendarEventsCollection.find({}).skip(Options?.offset).limit(Options?.limit).toArray();
+    const array = await calendarEventsCollection.find({}).skip(Options?.offset).limit(Options?.limit).sort({ date: 1}).toArray();
     return array
 }
 
