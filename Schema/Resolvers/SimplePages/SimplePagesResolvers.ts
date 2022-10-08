@@ -18,12 +18,7 @@ export async function editSimplePage(_id: string, updatedSimplePage: SimplePageI
 		await simplePagesCollection.updateOne(
 			{ _id: new ObjectId(_id) },
 			{
-				$set: {
-					title: updatedSimplePage.title ?? exists.title,
-					text: updatedSimplePage.text ?? exists.text,
-					image: updatedSimplePage.image ?? exists.image,
-                    type: exists.type
-				},
+				$set: updatedSimplePage,
 			}
 		);
 	} catch (error) {

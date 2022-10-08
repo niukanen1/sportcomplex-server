@@ -41,7 +41,8 @@ export type TimeTableInput = {
 export type SimplePageInput = { 
     title: TextContent | null, 
     text: TextContent | null, 
-    image: string | null
+    image: string | null, 
+    pageName: string | null
 }
 export type PriceListElementInput = {
 	name: TextContent;
