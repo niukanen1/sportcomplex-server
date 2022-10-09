@@ -1,3 +1,4 @@
+import { pageConfigTypes } from './PageConfigTypes/pageConfigTypes';
 import { ContactInfoTypes } from "./ContactPage/ContactInfo";
 import { SimplePagesTypes } from "./SimplePages/SimplePagesTypes";
 import { priceListType } from "./Prices/priceListType";
@@ -15,5 +16,6 @@ export const typeDefs = [
 	SportOpportunitiesTypes,
 	ContactInfoTypes,
     UserTypes, 
-    CalendarTypes
+    CalendarTypes, 
+    pageConfigTypes
 ];

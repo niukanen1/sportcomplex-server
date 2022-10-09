@@ -13,6 +13,7 @@ import { getSportOpportunitiesDescription, setSportOpportunitiesDescription } fr
 import { getGeneralContactsInfo, getPersonalContactsInfo, setGeneralContactInfo, setPersonalContactInfo } from "./ContactPage/ContactInfoResolvers";
 import { Login, updateUser } from "./UserLogin/UserLogin";
 import { addCalendarEvent, deleteCalendarEvent, getCalendarEventById, getCalendarEvents, updateCalendarEvent } from "./Calendar/CalendarResolvers";
+import { addPageConfig, addPageNotWorkingBanner, editPageConfig, editPageNotWorkingBanner, getPageConfig, getPageNotWorkingBanner } from "./PageConfigs/pageConfigResolvers";
 
 export type TextContent = {
 	RUS: string;
@@ -88,6 +89,32 @@ export type Options = {
     limit: number
 }
 
+export type PageConfig = { 
+    pageName: string 
+    showBanner: boolean
+}
+
+export type OptionalText = { 
+    show: boolean 
+    text: TextContent
+}
+
+export type PageNotWorkingBanner = { 
+    title: OptionalText
+    centeredText: OptionalText
+    body: OptionalText
+    link: { 
+        show: boolean 
+        body: string
+    }
+    showContacts: boolean
+}
+
+export type OptionalSingleStr = { 
+    show: boolean 
+    body: string
+}
+
 export const resolvers = {
 	Query: {
         // PRICING
@@ -131,6 +158,14 @@ export const resolvers = {
         }, 
         GetCalendarEventById: async (_:any, { id } : { id: string}) => { 
             return getCalendarEventById(id);
+        }, 
+
+        // PAGE CONFIGS
+        GetPageNotWorkingBanner: async () => { 
+            return await getPageNotWorkingBanner();
+        }, 
+        GetPageConfig: async (_: any, {pageName} : {pageName: string}) => { 
+            return await getPageConfig(pageName);
         }
 
 	},
@@ -204,6 +239,20 @@ export const resolvers = {
         }, 
         DeleteCalendarEvent: async (_:any, {_id}: {_id: string}) => { 
             return await deleteCalendarEvent(_id);
+        }, 
+
+        // PAGE CONFIGS 
+        EditPageNotWorkingBanner: async (_: any, {newBanner} : {newBanner: PageNotWorkingBanner} ) => { 
+            return await editPageNotWorkingBanner(newBanner);
+        }, 
+        EditPageConfig: async (_: any, {pageName, newConfig} : {pageName: string, newConfig: PageConfig}) => { 
+            return await editPageConfig(pageName, newConfig);
+        }, 
+        AddPageConfig: async (_: any, {newPageConfig} : {newPageConfig: PageConfig}) => { 
+            return await addPageConfig(newPageConfig)
+        }, 
+        AddPageNotWorkingBanner: async (_: any, {newBanner} : {newBanner: PageNotWorkingBanner}) => { 
+            return await addPageNotWorkingBanner(newBanner);
         }
 	},
 };

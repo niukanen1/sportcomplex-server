@@ -44,12 +44,7 @@ export async function getSimplePages(type: number) {
 export async function addSimplePage(type: number, newSimplePage: SimplePageInput) {
     const response = {str: "Success"}
     try { 
-        await simplePagesCollection.insertOne({ 
-            title: newSimplePage.title, 
-            text: newSimplePage.text, 
-            image: newSimplePage.image, 
-            type: type, 
-        })
+        await simplePagesCollection.insertOne(newSimplePage)
     } catch(error) { 
         response.str = "Error: " + error
         throw new Error(`${error}`)
