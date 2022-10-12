@@ -11,7 +11,7 @@ export const LayoutTypes = gql`
         _id: ID!
         firstSection: FooterSection
         secondSection: FooterSection
-        thirdSection: TextContent
+        thirdSection: FooterSection
         showContacts: Boolean
     }
 
@@ -34,7 +34,7 @@ export const LayoutTypes = gql`
     input FooterInput { 
         firstSection: FooterSectionInput
         secondSection: FooterSectionInput
-        thirdSection: TextContentInput
+        thirdSection: FooterSectionInput
         showContacts: Boolean
     }
 
