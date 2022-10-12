@@ -14,6 +14,7 @@ import { getGeneralContactsInfo, getPersonalContactsInfo, setGeneralContactInfo,
 import { Login, updateUser } from "./UserLogin/UserLogin";
 import { addCalendarEvent, deleteCalendarEvent, getCalendarEventById, getCalendarEvents, updateCalendarEvent } from "./Calendar/CalendarResolvers";
 import { addPageConfig, addPageNotWorkingBanner, editPageConfig, editPageNotWorkingBanner, getPageConfig, getPageNotWorkingBanner } from "./PageConfigs/pageConfigResolvers";
+import { addFooter, editFooter, getFooter } from "./Layout/LayoutResolvers";
 
 export type TextContent = {
 	RUS: string;
@@ -115,6 +116,19 @@ export type OptionalSingleStr = {
     body: string
 }
 
+export type FooterSection = { 
+    header: TextContent
+    showHeader: boolean
+    body: TextContent
+    showBody: boolean
+}
+export type Footer = { 
+    firstSection: FooterSection
+    secondSection: FooterSection
+    thirdSection: TextContent
+    showContacts: boolean
+}
+
 export const resolvers = {
 	Query: {
         // PRICING
@@ -166,6 +180,11 @@ export const resolvers = {
         }, 
         GetPageConfig: async (_: any, {pageName} : {pageName: string}) => { 
             return await getPageConfig(pageName);
+        }, 
+
+        // FOOTER 
+        GetFooter: async () => { 
+            return getFooter();
         }
 
 	},
@@ -253,6 +272,14 @@ export const resolvers = {
         }, 
         AddPageNotWorkingBanner: async (_: any, {newBanner} : {newBanner: PageNotWorkingBanner}) => { 
             return await addPageNotWorkingBanner(newBanner);
+        }, 
+
+        // FOOTER 
+        AddFooterData: async (_:any, {newFooter} : {newFooter: Footer}) => { 
+            return addFooter(newFooter);
+        }, 
+        EditFooterData: async (_:any, {updatedFooter}: {updatedFooter: Footer}) => { 
+            return editFooter(updatedFooter);
         }
 	},
 };

@@ -16,6 +16,7 @@ export const personalContactsCollection = database.collection("personalContacts"
 export const userDataCollection = database.collection("userData");
 export const calendarEventsCollection = database.collection("calendarEvents");
 export const pageConfigCollection = database.collection("pageConfigs");
+export const layoutCollection = database.collection("layout");
 
 
 client.connect(async (err) => {

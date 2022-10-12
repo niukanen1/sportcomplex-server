@@ -7,6 +7,7 @@ import { TimeTableTypes } from "./MainPage/TimeTableTypes";
 import { SportOpportunitiesTypes } from "./MainPage/SportOpportunitiesTypes";
 import { UserTypes } from "./UserLogin/UserTypes";
 import { CalendarTypes } from "./Calendar/CalendarTypes";
+import { LayoutTypes } from './Layout/LayoutTypes';
 
 export const typeDefs = [
 	priceListType,
@@ -17,5 +18,6 @@ export const typeDefs = [
 	ContactInfoTypes,
     UserTypes, 
     CalendarTypes, 
-    pageConfigTypes
+    pageConfigTypes, 
+    LayoutTypes
 ];
