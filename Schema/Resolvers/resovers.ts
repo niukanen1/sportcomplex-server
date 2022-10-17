@@ -12,7 +12,7 @@ import { getTimeTable, setTimeTable } from "./MainPage/TimeTableResolvers";
 import { getSportOpportunitiesDescription, setSportOpportunitiesDescription } from "./MainPage/SportOpportunitiesResolvers";
 import { getGeneralContactsInfo, getPersonalContactsInfo, setGeneralContactInfo, setPersonalContactInfo } from "./ContactPage/ContactInfoResolvers";
 import { Login, updateUser } from "./UserLogin/UserLogin";
-import { addCalendarEvent, deleteCalendarEvent, getCalendarEventById, getCalendarEvents, updateCalendarEvent } from "./Calendar/CalendarResolvers";
+import { addCalendarEvent, deleteCalendarEvent, getCalendarEventById, getCalendarEvents, getCalendarEventsByMonth, updateCalendarEvent } from "./Calendar/CalendarResolvers";
 import { addPageConfig, addPageNotWorkingBanner, editPageConfig, editPageNotWorkingBanner, getPageConfig, getPageNotWorkingBanner } from "./PageConfigs/pageConfigResolvers";
 import { addFooter, editFooter, getFooter } from "./Layout/LayoutResolvers";
 
@@ -173,6 +173,9 @@ export const resolvers = {
         GetCalendarEventById: async (_:any, { id } : { id: string}) => { 
             return getCalendarEventById(id);
         }, 
+        GetCalendarEventsByMonth: async (_:any, {monthStr} : {monthStr: string}) => { 
+            return await getCalendarEventsByMonth(monthStr);
+        },
 
         // PAGE CONFIGS
         GetPageNotWorkingBanner: async () => { 
