@@ -59,3 +59,13 @@ export async function getCalendarEventsByMonth(monthStr: string) {
     const arrayOfMonthSortedEvents = await calendarEventsCollection.find({date: {$regex: new RegExp(`${monthStr}-[0-9]{2}`)}}).sort({ date: 1}).toArray();
     return arrayOfMonthSortedEvents;
 }
+
+export async function getRelevantCalendarEventsByCurrentDate(currentDate: string) { 
+    const arrayOfRelevantEvents = await calendarEventsCollection.find({date: {$gt: currentDate}}).sort({date: 1}).toArray();
+    const currentDateEvent = await calendarEventsCollection.find({date: currentDate}).toArray();
+    if (currentDateEvent[0]) { 
+        arrayOfRelevantEvents.unshift(currentDateEvent[0]);
+    }
+    
+    return arrayOfRelevantEvents
+}

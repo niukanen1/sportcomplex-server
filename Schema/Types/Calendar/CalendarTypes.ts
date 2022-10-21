@@ -17,6 +17,7 @@ export const CalendarTypes = gql`
         GetCalendarEvents(options: Options): [CalendarEvent]
         GetCalendarEventById(id: ID!) : CalendarEvent
         GetCalendarEventsByMonth(monthStr: String): [CalendarEvent]
+        GetRelevantCalendarEventsByCurrentDate(currentDate: String): [CalendarEvent]
     }
 
     type Mutation { 
