@@ -56,7 +56,7 @@ export async function deleteCalendarEvent(_id: string) {
 }
 
 export async function getCalendarEventsByMonth(monthStr: string) { 
-    const arrayOfMonthSortedEvents = await calendarEventsCollection.find({date: {$regex: new RegExp(`${monthStr}-[0-9]{2}`)}}).sort({ date: 1}).toArray();
+    const arrayOfMonthSortedEvents = await calendarEventsCollection.find({date: {$regex: new RegExp(`${monthStr}-[0-9]{2}`)}}).sort({ date: 1, startTime: 1}).toArray();
     return arrayOfMonthSortedEvents;
 }
 
