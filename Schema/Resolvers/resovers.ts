@@ -8,7 +8,7 @@ import {
 } from "./Prices/priceListResolver";
 import { editToken, getFacebookData, getLatestNews } from './MainPage/LatestNewsResolver'
 import { addSimplePage, editSimplePage, getSimplePages } from "./SimplePages/SimplePagesResolvers";
-import { getTimeTable, setTimeTable } from "./MainPage/TimeTableResolvers";
+import { GetObjectTimeTable, getTimeTable, ObjectTimeTable, SetObjectTimeTable, setTimeTable } from "./MainPage/TimeTableResolvers";
 import { getSportOpportunitiesDescription, setSportOpportunitiesDescription } from "./MainPage/SportOpportunitiesResolvers";
 import { getGeneralContactsInfo, getPersonalContactsInfo, setGeneralContactInfo, setPersonalContactInfo } from "./ContactPage/ContactInfoResolvers";
 import { Login, updateUser } from "./UserLogin/UserLogin";
@@ -191,6 +191,11 @@ export const resolvers = {
         // FOOTER 
         GetFooter: async () => { 
             return getFooter();
+        },
+
+        // Object TimeTable 
+        GetObjectTimeTable: async (_:any, {objectName} : {objectName: string}) => { 
+            return await GetObjectTimeTable(objectName);
         }
 
 	},
@@ -286,6 +291,11 @@ export const resolvers = {
         }, 
         EditFooterData: async (_:any, {updatedFooter}: {updatedFooter: Footer}) => { 
             return editFooter(updatedFooter);
+        }, 
+
+        // Object Timetable 
+        SetObjectTimeTable: async (_:any, {objectName, newObjectTimeTable}: {objectName: string, newObjectTimeTable: ObjectTimeTable}) => { 
+            return await SetObjectTimeTable(objectName, newObjectTimeTable); 
         }
 	},
 };
