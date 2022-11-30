@@ -30,7 +30,7 @@ export const TimeTableTypes = gql`
 
     # Time table for sport objects 
     type ObjectTimeTableEvent { 
-        id: Int!
+        id: Int
         textContent: TextContent
         name: String
         type: String
@@ -51,7 +51,7 @@ export const TimeTableTypes = gql`
         timeTable: ObjectTimeTable
     }
     input ObjectTimeTableEventInput { 
-        id: Int!
+        id: Int
         textContent: TextContentInput
         name: String
         type: String
