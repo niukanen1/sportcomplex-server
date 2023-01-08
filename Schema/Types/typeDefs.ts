@@ -8,6 +8,7 @@ import { SportOpportunitiesTypes } from "./MainPage/SportOpportunitiesTypes";
 import { UserTypes } from "./UserLogin/UserTypes";
 import { CalendarTypes } from "./Calendar/CalendarTypes";
 import { LayoutTypes } from './Layout/LayoutTypes';
+import { HostelTypes } from './Hostel/HostelTypes';
 
 export const typeDefs = [
 	priceListType,
@@ -19,5 +20,6 @@ export const typeDefs = [
     UserTypes, 
     CalendarTypes, 
     pageConfigTypes, 
-    LayoutTypes
+    LayoutTypes, 
+    HostelTypes
 ];

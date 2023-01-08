@@ -15,6 +15,7 @@ import { Login, updateUser } from "./UserLogin/UserLogin";
 import { addCalendarEvent, deleteCalendarEvent, getCalendarEventById, getCalendarEvents, getCalendarEventsByMonth, getRelevantCalendarEventsByCurrentDate, updateCalendarEvent } from "./Calendar/CalendarResolvers";
 import { addPageConfig, addPageNotWorkingBanner, editPageConfig, editPageNotWorkingBanner, getPageConfig, getPageNotWorkingBanner } from "./PageConfigs/pageConfigResolvers";
 import { addFooter, editFooter, getFooter } from "./Layout/LayoutResolvers";
+import { AddFacility, AddRoom, DeleteFacility, DeleteRoom, EditFacility, EditRoom, Facility, GetFacilites, GetMainDescription, GetRooms, MainDescription, Room, SetFacilities, SetMainDescription, SetRooms } from "./Hostel/HostelResolvers";
 
 export type TextContent = {
 	RUS: string;
@@ -196,7 +197,18 @@ export const resolvers = {
         // Object TimeTable 
         GetObjectTimeTable: async (_:any, {objectName} : {objectName: string}) => { 
             return await GetObjectTimeTable(objectName);
-        }
+        }, 
+
+        // Hostel 
+        GetRooms: async () => { 
+            return await GetRooms();
+        }, 
+        GetMainDescription: async () => { 
+            return await GetMainDescription(); 
+        },
+        GetFacilities: async () => { 
+            return await GetFacilites(); 
+        },
 
 	},
 	Mutation: {
@@ -296,6 +308,37 @@ export const resolvers = {
         // Object Timetable 
         SetObjectTimeTable: async (_:any, {objectName, newObjectTimeTable}: {objectName: string, newObjectTimeTable: ObjectTimeTable}) => { 
             return await SetObjectTimeTable(objectName, newObjectTimeTable); 
+        }, 
+
+        // HOSTEL 
+        SetRooms: async (_:any, {replaceRoomsWith}: {replaceRoomsWith: Room[]}) => { 
+            return await SetRooms(replaceRoomsWith);
+        }, 
+        AddRoom: async (_:any, {newRoom} : {newRoom: Room}) => { 
+            return await AddRoom(newRoom);
+        }, 
+        DeleteRoom: async (_:any, {RoomIdToDelete} : {RoomIdToDelete: string}) => { 
+            return await DeleteRoom(RoomIdToDelete);
+        }, 
+        EditRoom: async (_:any, {RoomIdToEdit, editedRoom} : {RoomIdToEdit: string, editedRoom: Room}) => { 
+            return await EditRoom(RoomIdToEdit, editedRoom); 
+        }, 
+
+        SetMainDescription: async(_:any, {description}: {description: MainDescription}) => { 
+            return await SetMainDescription(description);
+        }, 
+
+        SetFacilities: async (_:any, {facilities}: {facilities: Facility[]}) => { 
+            return await SetFacilities(facilities); 
+        }, 
+        AddFacility: async (_:any, {facility}: {facility: Facility}) => { 
+            return await AddFacility(facility);
+        }, 
+        EditFacility: async (_:any, {facilityID, newFacilityData} : {facilityID: string, newFacilityData: Facility}) => { 
+            return await EditFacility(facilityID, newFacilityData); 
+        }, 
+        DeleteFacility: async (_:any, {facilityID} : {facilityID: string}) => { 
+            return await DeleteFacility(facilityID);
         }
 	},
 };

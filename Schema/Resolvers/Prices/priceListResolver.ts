@@ -5,7 +5,6 @@ import { ObjectId } from "mongodb";
 
 export async function getPriceList() {
 	const cursor = await priceListCollection.find({}).toArray();
-	console.log("first");
 	return cursor;
 }
 
